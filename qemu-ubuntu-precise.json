@@ -35,6 +35,7 @@
   "provisioners": [{
     "type": "shell",
     "scripts": [
+      "scripts/env.sh",
       "scripts/apt.sh",
       "scripts/sshd.sh",
       "scripts/cleanup.sh",
