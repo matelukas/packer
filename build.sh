@@ -1,6 +1,6 @@
 #!/bin/sh -ex
 
-mkdir ./tmp
+mkdir ./tmp || true
 
 for t in *.json
 do
