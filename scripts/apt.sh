@@ -6,3 +6,4 @@ EOF
 
 sudo LC_ALL=en_US.UTF-8 apt-get update
 sudo LC_ALL=en_US.UTF-8 apt-get dist-upgrade --yes | tee
+sudo LC_ALL=en_US.UTF-8 apt-get install ifupdown --yes
