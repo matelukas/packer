@@ -1,8 +1,21 @@
-#!/bin/sh -ex
+#!/bin/bash -e
 
-mkdir ./tmp || true
+set -o pipefail
 
-for t in *.json
+ubuntu_releases="precise trusty xenial bionic"
+packer_cwd=/ssd/packer
+vagrant_cwd=/ssd/vagrant
+
+export ubuntu_releases
+
+cd $packer_cwd
+
+[ ! -e $packer_cwd/tmp ] && mkdir -p $packer_cwd
+
+for r in $ubuntu_releases
 do
-  TMPDIR=./tmp packer build $t&
+ echo Building $r
+ TMPDIR=./tmp ./packer build qemu-ubuntu-${r}.json | tee -a /tmp/vagrant_image_rebuild.log
+ vagrant box list | grep -q $r && vagrant box remove ubuntu-${r} 
+ vagrant box add $packer_cwd/boxes/qemu-ubuntu-${r}-libvirt.box --name ubuntu-${r} --force | tee -a /tmp/vagrant_image_rebuild.log
 done
