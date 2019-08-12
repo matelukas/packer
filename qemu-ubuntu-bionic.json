@@ -66,7 +66,7 @@
     "headless": "true",
     "iso_checksum": "",
     "iso_checksum_type": "none",
-    "iso_url": "/home/iso/ubuntu-18.04-server-amd64.iso",
+    "iso_url": "http://old-releases.ubuntu.com/releases/18.04.0/ubuntu-18.04-server-amd64.iso",
     "memory": "1024",
     "ssh_timeout": "60m"
   }
