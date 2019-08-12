@@ -27,11 +27,12 @@ keyboard-configuration	console-setup/ask_detect	boolean	false
 EOF
 
 export DEBIAN_FRONTEND=noninteractive
+export UCF_FORCE_CONFOLD=1
 
 sudo apt-get update
 
 for p in locales bridge-utils build-essential debconf-utils;do
-	sudo apt-get install --yes $p
+	sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y $p
 done
 
 if grep -q ^UBUNTU_CODENAME=bionic /etc/os-release;then
@@ -40,4 +41,4 @@ if grep -q ^UBUNTU_CODENAME=bionic /etc/os-release;then
 fi
 
 sudo LC_ALL=en_US.UTF-8 apt-get install ifupdown --yes
-sudo LC_ALL=en_US.UTF-8 apt-get dist-upgrade --yes | tee
+sudo LC_ALL=en_US.UTF-8 apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y dist-upgrade | tee
