@@ -5,8 +5,8 @@ pipeline {
     stage('bionic'){
       steps {
         sh '''#!/bin/bash
-          mkdir tmp || true
           set -eu -o pipefail
+          mkdir tmp || true
           PACKER_LOG=1 TMPDIR=./tmp packer build qemu-ubuntu-bionic.json
         '''
       }
