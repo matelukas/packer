@@ -1,0 +1,56 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'getoptlong'
+
+ext_if = "vlan200"
+box_name = ""
+vm_name = ""
+
+opts = GetoptLong.new(
+  [ '--vm-name', GetoptLong::REQUIRED_ARGUMENT ],
+  [ '--box-name', GetoptLong::REQUIRED_ARGUMENT ]
+)
+
+opts.each do |opt, arg|
+  case opt
+  when '--vm-name'
+    vm_name=arg
+  when '--box-name'
+    box_name=arg
+  end
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.define vm_name
+  config.vm.hostname = vm_name
+  config.vm.box = box_name
+  config.vm.box_check_update = false
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+  
+  config.ssh.username = "ubuntu"
+  config.ssh.password = "ubuntu"
+
+  config.vm.network :public_network,
+    :dev => ext_if,
+    :mode => "bridge",
+    :type => "bridge"
+  
+  config.vm.provider :libvirt do |domain|
+    domain.memory = 1024
+    domain.cpus = 1
+    domain.nested = true
+    domain.machine_arch = "x86_64"
+    domain.volume_cache = "unsafe"
+    domain.driver = "kvm"
+    domain.host = "localhost"
+    domain.uri = "qemu:///system"
+    domain.connect_via_ssh = false
+    domain.storage_pool_name = "vagrant"
+    domain.management_network_name = "vagrant"
+    domain.management_network_mode = "nat"
+    domain.management_network_address = "192.168.100.0/24"
+    domain.management_network_guest_ipv6 = false
+    domain.management_network_autostart = false
+  end
+end
