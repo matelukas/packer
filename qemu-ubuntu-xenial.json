@@ -4,10 +4,10 @@
     "iso_url": "{{user `iso_url`}}",
     "iso_checksum": "{{user `iso_checksum`}}",
     "iso_checksum_type": "{{user `iso_checksum_type`}}",
-    "output_directory": "output-{{user `vm_name`}}",
+    "output_directory": "packer-artifacts/{{user `vm_name`}}.raw",
     "vm_name": "packer-{{user `vm_name`}}",
     "disk_size": "{{user `disk_size`}}",
-    "format": "qcow2",
+    "format": "raw",
     "accelerator": "kvm",
     "headless": "{{user `headless`}}",
     "http_directory": "http",
@@ -54,9 +54,9 @@
     ]
   }],
   "post-processors": [{
-    "type": "vagrant",
-    "compression_level": "{{user `compression_level`}}",
-    "output": "boxes/{{user `vm_name`}}-{{.Provider}}.box"
+    "type": "manifest",
+    "strip_path": true,
+    "output": "packer-artifacts/{{user `vm_name`}}.manifest"
   }],
   "variables": {
     "vm_name": "qemu-ubuntu-xenial",
@@ -64,9 +64,9 @@
     "cpus": "2",
     "disk_size": "40000",
     "headless": "true",
-    "iso_checksum": "",
-    "iso_checksum_type": "none",
-    "iso_url": "/home/iso/ubuntu-16.04.2-server-amd64.iso",
+    "iso_checksum": "ac8a79a86a905ebdc3ef3f5dd16b7360",
+    "iso_checksum_type": "md5sum",
+    "iso_url": "http://releases.ubuntu.com/xenial/ubuntu-16.04.6-server-amd64.iso",
     "memory": "1024",
     "ssh_timeout": "60m"
   }
