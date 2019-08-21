@@ -53,8 +53,6 @@
       "scripts/sshkey.sh"
     ]
   }],
-  "post-processors": [{
-  }],
   "variables": {
     "vm_name": "qemu-ubuntu-bionic",
     "compression_level": "6",
