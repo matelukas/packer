@@ -58,10 +58,14 @@ pipeline {
 
       post {
         failure {
-          cleanup_artifacts
+          steps {
+            cleanup_artifacts
+          }
         }
-        sucess {
-          list_artifacts
+        success {
+          steps {
+            list_artifacts
+          }
         }
       }
     }
