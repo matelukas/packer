@@ -1,3 +1,6 @@
+def packer_dir = "/mnt/nfs/packer"
+def packer_tpl = ["qemu-ubuntu-bionic", "qemu-ubuntu-xenial", "qemu-ubuntu-trusty"]
+
 pipeline {
   agent any
 
@@ -5,25 +8,32 @@ pipeline {
     TMPDIR = "./tmp"
   }
 
-  def packer_dir = "/mnt/nfs/packer"
-  def packer_tpl = ["qemu-ubuntu-bionic.json", "qemu-ubuntu-xenial.json", "qemu-ubuntu-trusty.json"]
-
   stages {
-    stage('Packer build'){
+    stage("Packer build"){
       steps {
-        sh "mkdir tmp &>/dev/null || true"
+        sh "mkdir ${TMPDIR} 2>/dev/null || true"
 
         script {
           for (int i = 0; i < packer_tpl.size(); ++i) {
-            sh "packer build ${packer_tpl[i]}"
+            sh "packer build ${packer_tpl[i]}.json"
           }
         }
       }
 
       post {
-        success {
-          echo "${packer_dir}"
+        failure {
+          script {
+            sh "rm -rf packer-artifacts/*"
+            error "Packer build failed"
+          }
         }
+      }
+    }
+
+    stage("Upload packer images"){
+      steps {
+        sh "mkdir ${packer_dir} 2>/dev/null || true"
+        sh "rsync -av packer-artifacts/*.raw ${packer_dir}/"
       }
     }
   }
