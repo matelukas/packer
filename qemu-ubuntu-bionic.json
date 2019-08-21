@@ -7,7 +7,7 @@
     "output_directory": "output-{{user `vm_name`}}",
     "vm_name": "packer-{{user `vm_name`}}",
     "disk_size": "{{user `disk_size`}}",
-    "format": "qcow2",
+    "format": "raw",
     "accelerator": "kvm",
     "headless": "{{user `headless`}}",
     "http_directory": "http",
@@ -54,9 +54,6 @@
     ]
   }],
   "post-processors": [{
-    "type": "vagrant",
-    "compression_level": "{{user `compression_level`}}",
-    "output": "boxes/{{user `vm_name`}}-{{.Provider}}.box"
   }],
   "variables": {
     "vm_name": "qemu-ubuntu-bionic",
