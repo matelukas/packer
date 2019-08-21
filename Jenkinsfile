@@ -1,11 +1,14 @@
 def packer_dir = "/mnt/nfs/packer"
 def packer_tpl = ["qemu-ubuntu-bionic", "qemu-ubuntu-xenial", "qemu-ubuntu-trusty"]
+def http_proxy = "http://10.1.0.14:3128"
 
 pipeline {
   agent any
 
   environment {
     TMPDIR = "./tmp"
+    HTTP_PROXY = "${http_proxy}"
+    HTTPS_PROXY = "${http_proxy}"
   }
 
   stages {
