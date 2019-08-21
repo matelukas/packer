@@ -40,7 +40,9 @@ pipeline {
 
   stages {
     stage("List packer templates") {
-      list_packer_tpls(packer_tpl)
+      steps {
+        list_packer_tpls(packer_tpl)
+      }
     }
 
     stage("Packer build") {
