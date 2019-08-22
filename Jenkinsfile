@@ -72,7 +72,7 @@ pipeline {
     stage("Upload packer images") {
       steps {
         sh "mkdir ${packer_dir} 2>/dev/null || true"
-        sh "rsync -rv packer-artifacts/ --prune-empty-dirs --include '*.raw' --exclude '*' ${packer_dir}/"
+        sh "rsync -rv --prune-empty-dirs --include '*.raw' packer-artifacts/ ${packer_dir}/"
       }
     }
   }
