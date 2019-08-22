@@ -7,7 +7,7 @@ def parse_json(json) {
 }
 
 def cleanup_artifacts() {
-  sh "rm -rf packer-artifacts/*"
+  sh "rm -rf packer-artifacts"
 }
 
 @NonCPS
@@ -66,7 +66,7 @@ pipeline {
     stage("Upload packer images") {
       steps {
         sh "mkdir ${packer_dir} 2>/dev/null || true"
-        sh "rsync -av packer-artifacts/*.raw ${packer_dir}/"
+        sh "rsync -av packer-artifacts/ --include '*.raw' ${packer_dir}/"
       }
     }
   }
