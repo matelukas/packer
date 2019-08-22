@@ -46,3 +46,4 @@ sudo -E apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force
 
 sudo -E sh -c 'systemctl disable systemd-resolved || true'
 sudo -E sh -c 'systemctl stop systemd-resolved || true'
+sudo -E sh -c 'rm -rf /etc/netplan || true'
