@@ -6,20 +6,17 @@ def parse_json(json) {
   return new groovy.json.JsonSlurper().parseText(json)
 }
 
-def list_artifacts() {
-  def manifests = findFiles(glob: "packer-artifacts/*.manifest")
-  
-  for(int i = 0; i < manifests.size(); i++) {
-    echo "${manifests[i].name}"
-  }
+def cleanup_artifacts() {
+  sh "rm -rf packer-artifacts/*"
+}
 
+@NonCPS
+def list_artifacts() {
+    def manifests = "ls packer-artifacts/*.manifest".execute()
+    println manifests.text
 //  def manifest_data = readFile manifest
 //  def manifest_json = parse_json(manifest_data)
 //  echo manifest_json.builds.files
-}
-
-def cleanup_artifacts() {
-  sh "rm -rf packer-artifacts/*"
 }
 
 @NonCPS // has to be NonCPS or the build breaks on the call to .each
