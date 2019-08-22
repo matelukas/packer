@@ -62,12 +62,12 @@
     "vm_name": "qemu-ubuntu-bionic",
     "compression_level": "6",
     "cpus": "2",
-    "disk_size": "40000",
+    "disk_size": "5000",
     "headless": "true",
     "iso_checksum": "1413c9797dbfa1e57fabfb5c91cfb96f",
     "iso_checksum_type": "md5",
     "iso_url": "http://old-releases.ubuntu.com/releases/18.04.0/ubuntu-18.04-server-amd64.iso",
-    "memory": "1024",
+    "memory": "2048",
     "ssh_timeout": "60m"
   }
 }

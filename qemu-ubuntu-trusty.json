@@ -53,13 +53,13 @@
   "variables": {
     "vm_name": "qemu-ubuntu-trusty",
     "compression_level": "6",
-    "cpus": "2",
-    "disk_size": "40000",
+    "cpus": "3",
+    "disk_size": "5000",
     "headless": "true",
     "iso_checksum": "e750536067b6fff7f9934a13466fe2db",
     "iso_checksum_type": "md5",
     "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.6-server-amd64.iso",
-    "memory": "1024",
+    "memory": "2048",
     "ssh_timeout": "60m"
   }
 }
