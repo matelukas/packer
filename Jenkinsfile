@@ -12,8 +12,8 @@ def cleanup_artifacts() {
 
 @NonCPS
 def list_artifacts() {
-    def manifests = "ls packer-artifacts/*.manifest".execute()
-    println manifests.text
+//  def manifests = "ls packer-artifacts/*.manifest".execute()
+//  println manifests.text
 //  def manifest_data = readFile manifest
 //  def manifest_json = parse_json(manifest_data)
 //  echo manifest_json.builds.files
