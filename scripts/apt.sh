@@ -43,3 +43,6 @@ fi
 
 sudo -E apt-get install ifupdown resolvconf --yes
 sudo -E apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y dist-upgrade
+
+sudo -E sh -c 'systemctl disable systemd-resolved || true'
+sudo -E sh -c 'systemctl stop systemd-resolved || true'
