@@ -5,7 +5,7 @@
     "iso_checksum": "{{user `iso_checksum`}}",
     "iso_checksum_type": "{{user `iso_checksum_type`}}",
     "output_directory": "packer-artifacts/{{user `vm_name`}}",
-    "vm_name": "packer-{{user `vm_name`}}",
+    "vm_name": "packer-{{user `vm_name`}}.raw",
     "disk_size": "{{user `disk_size`}}",
     "format": "raw",
     "accelerator": "kvm",
