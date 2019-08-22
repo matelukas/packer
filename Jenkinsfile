@@ -42,6 +42,12 @@ pipeline {
       }
     }
 
+    stage("Remove artifacts") {
+      steps {
+        cleanup_artifacts()
+      }
+    }
+
     stage("Packer build") {
       steps {
         sh "mkdir ${TMPDIR} 2>/dev/null || true"
