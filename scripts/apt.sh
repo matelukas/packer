@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e
 
 sudo tee -a /etc/apt/apt.conf.d/00proxy << EOF
 acquire::http::Proxy "http://10.1.0.14:3142";
@@ -32,11 +32,13 @@ export LC_ALL=en_US.UTF-8
 
 sudo apt-get update
 
-for p in locales bridge-utils build-essential debconf-utils cloud-guest-utils;do
-        sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y $p
+for p in locales bridge-utils build-essential debconf-utils cloud-guest-utils
+do
+        sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y install $p
 done
 
-if grep -q ^UBUNTU_CODENAME=bionic /etc/os-release;then
+if grep -q ^UBUNTU_CODENAME=bionic /etc/os-release
+then
         sudo debconf-set-selections < /tmp/keyboard.conf
         sudo dpkg-reconfigure keyboard-configuration -f noninteractive
 fi
