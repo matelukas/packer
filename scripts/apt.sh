@@ -41,5 +41,4 @@ if grep -q ^UBUNTU_CODENAME=bionic /etc/os-release;then
         sudo dpkg-reconfigure keyboard-configuration -f noninteractive
 fi
 
-sudo -E apt-get install ifupdown resolvconf --yes
 sudo -E apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y dist-upgrade
