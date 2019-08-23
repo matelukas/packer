@@ -32,7 +32,7 @@ export LC_ALL=en_US.UTF-8
 
 sudo apt-get update
 
-for p in locales bridge-utils build-essential debconf-utils;do
+for p in locales bridge-utils build-essential debconf-utils cloud-guest-utils;do
         sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq -y $p
 done
 
