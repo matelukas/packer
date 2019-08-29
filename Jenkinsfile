@@ -1,6 +1,6 @@
 def packer_dir = "/mnt/nfs/packer"
 def packer_tpl = ["qemu-ubuntu-bionic", "qemu-ubuntu-xenial", "qemu-ubuntu-trusty"]
-def http_proxy = "http://10.1.0.14:3128"
+def http_proxy = "http://192.168.255.14:3128"
 
 def parse_json(json) {
   return new groovy.json.JsonSlurper().parseText(json)

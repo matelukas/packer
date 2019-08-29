@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 sudo tee -a /etc/apt/apt.conf.d/00proxy << EOF
-acquire::http::Proxy "http://10.1.0.14:3142";
+acquire::http::Proxy "http://192.168.255.14:3142";
 EOF
 
 sudo tee -a /tmp/keyboard.conf << EOF
